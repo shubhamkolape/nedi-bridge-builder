@@ -1,12 +1,47 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useEffect } from 'react';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import ImpactAreas from '../components/ImpactAreas';
+import InitiativesShowcase from '../components/InitiativesShowcase';
+import JewelleryFeature from '../components/JewelleryFeature';
+import CourseOverview from '../components/CourseOverview';
+import FilmHub from '../components/FilmHub';
+import TeamSection from '../components/TeamSection';
+import ContactSection from '../components/ContactSection';
+import Footer from '../components/Footer';
 
 const Index = () => {
+  // Add page load animation
+  useEffect(() => {
+    // Set initial opacity to 0
+    document.body.style.opacity = '0';
+    
+    // Fade in the page
+    setTimeout(() => {
+      document.body.style.transition = 'opacity 0.8s ease-out';
+      document.body.style.opacity = '1';
+    }, 100);
+    
+    // Clean up
+    return () => {
+      document.body.style.opacity = '';
+      document.body.style.transition = '';
+    };
+  }, []);
+  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen">
+      <Navbar />
+      <Hero />
+      <ImpactAreas />
+      <InitiativesShowcase />
+      <JewelleryFeature />
+      <CourseOverview />
+      <FilmHub />
+      <TeamSection />
+      <ContactSection />
+      <Footer />
     </div>
   );
 };
