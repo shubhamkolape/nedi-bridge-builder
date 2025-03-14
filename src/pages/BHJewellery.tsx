@@ -4,7 +4,7 @@ import PageLayout from '../components/PageLayout';
 import HeroSection from '../components/HeroSection';
 import CTAButton from '../components/CTAButton';
 import { useScrollAnimation } from '../utils/animations';
-import { ShoppingBag, Users, MessageSquare } from 'lucide-react';
+import { ShoppingBag, Users, MessageSquare, PlayCircle } from 'lucide-react';
 
 const BHJewellery = () => {
   const [contentRef, isContentVisible] = useScrollAnimation();
@@ -209,7 +209,7 @@ const BHJewellery = () => {
                   Take a glimpse into the traditional jewelry-making process, where our skilled artisans transform raw materials into exquisite pieces of wearable art.
                 </p>
                 <CTAButton href="#" variant="outline" className="inline-flex items-center gap-2">
-                  <Play size={16} />
+                  <PlayCircle size={16} />
                   Watch the Process
                 </CTAButton>
               </div>
