@@ -101,3 +101,42 @@ export const useSmoothCounter = (
   
   return count;
 };
+
+// Custom hook for typewriter effect
+export const useTypewriter = (
+  text: string,
+  typingSpeed = 100,
+  startDelay = 500
+): string => {
+  const [displayedText, setDisplayedText] = useState('');
+  
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    
+    if (displayedText.length < text.length) {
+      const delay = displayedText.length === 0 ? startDelay : typingSpeed;
+      
+      timeout = setTimeout(() => {
+        setDisplayedText(text.substring(0, displayedText.length + 1));
+      }, delay);
+    }
+    
+    return () => clearTimeout(timeout);
+  }, [displayedText, text, typingSpeed, startDelay]);
+  
+  return displayedText;
+};
+
+// Custom hook for image loading with blur-up effect
+export const useImageLoad = (): [
+  boolean,
+  (event: React.SyntheticEvent<HTMLImageElement>) => void
+] => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  const handleImageLoaded = (event: React.SyntheticEvent<HTMLImageElement>) => {
+    setIsLoaded(true);
+  };
+  
+  return [isLoaded, handleImageLoaded];
+};

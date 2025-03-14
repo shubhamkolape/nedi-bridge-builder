@@ -30,6 +30,21 @@ const Index = () => {
     };
   }, []);
   
+  // Scroll to specific section if hash is present in URL
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 500);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, []);
+  
   return (
     <div className="min-h-screen">
       <Navbar />

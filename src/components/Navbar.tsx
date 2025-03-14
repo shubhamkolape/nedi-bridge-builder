@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useScrollAnimation } from '../utils/animations';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,13 +23,25 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'BH Jewellery', href: '#jewellery' },
-    { name: 'NE Connect', href: '#course' },
-    { name: 'Film Hub', href: '#filmhub' },
-    { name: 'Team', href: '#team' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/#about' },
+    { 
+      name: 'Initiatives', 
+      dropdown: true,
+      items: [
+        { name: 'Heritage on Wheels', href: '/heritage-on-wheels' },
+        { name: 'Cinematic Bridges', href: '/cinematic-bridges' },
+        { name: 'NE Connect', href: '/ne-connect' },
+        { name: 'Youth Power', href: '/youth-power' },
+        { name: 'Orange Economy', href: '/orange-economy' },
+        { name: 'Voices of Land', href: '/voices-of-land' },
+        { name: 'Future Festivals', href: '/future-festivals' },
+      ]
+    },
+    { name: 'BH Jewellery', href: '/bh-jewellery' },
+    { name: 'Global Film Festival', href: '/global-film-festival' },
+    { name: 'Team', href: '/#team' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   return (
@@ -43,25 +56,49 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <a href="#" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <span className="text-2xl font-bold text-nedi-green">NEDI</span>
           <span className="ml-2 text-sm text-nedi-gray">North East Development Initiative</span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-foreground/80 hover:text-nedi-green transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-nedi-orange after:origin-bottom-right after:scale-x-0 after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
-            >
-              {link.name}
-            </a>
+            link.dropdown ? (
+              <div key={link.name} className="relative group">
+                <button className="text-foreground/80 hover:text-nedi-green transition-colors flex items-center gap-1">
+                  {link.name}
+                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                  <div className="py-1">
+                    {link.items?.map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="text-foreground/80 hover:text-nedi-green transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-nedi-orange after:origin-bottom-right after:scale-x-0 after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
+              >
+                {link.name}
+              </Link>
+            )
           ))}
-          <a href="#contact" className="btn-primary">
+          <Link to="/#contact" className="btn-primary">
             Get Involved
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -91,22 +128,42 @@ const Navbar = () => {
           </div>
           <nav className="flex flex-col space-y-6">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-xl font-medium text-foreground hover:text-nedi-green py-2 border-b border-muted"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.name}
-              </a>
+              link.dropdown ? (
+                <div key={link.name} className="space-y-2">
+                  <span className="text-xl font-medium text-foreground py-2 border-b border-muted">
+                    {link.name}
+                  </span>
+                  <div className="pl-4 space-y-2">
+                    {link.items?.map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className="block text-lg text-foreground/80 hover:text-nedi-green py-1"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="text-xl font-medium text-foreground hover:text-nedi-green py-2 border-b border-muted"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              )
             ))}
-            <a 
-              href="#contact" 
+            <Link 
+              to="/#contact" 
               className="btn-primary self-start mt-4"
               onClick={() => setIsMenuOpen(false)}
             >
               Get Involved
-            </a>
+            </Link>
           </nav>
         </div>
       </div>
