@@ -4,7 +4,7 @@ import PageLayout from '../components/PageLayout';
 import HeroSection from '../components/HeroSection';
 import CTAButton from '../components/CTAButton';
 import { Link } from 'react-router-dom';
-import { Calendar, FilmStrip, Globe, Medal, Users, VideoIcon } from 'lucide-react';
+import { Calendar, Film, Globe, Medal, Users, VideoIcon } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 
 const GlobalFilmFestival = () => {
@@ -40,7 +40,7 @@ const GlobalFilmFestival = () => {
                 <p className="text-gray-600">Featuring films from over 50 countries, celebrating diverse cultural perspectives</p>
               </div>
               <div className="p-6 bg-gray-50 rounded-lg shadow-sm">
-                <FilmStrip className="h-12 w-12 text-nedi-green mx-auto mb-4" />
+                <Film className="h-12 w-12 text-nedi-green mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Diverse Selections</h3>
                 <p className="text-gray-600">Showcasing feature films, short films, documentaries, and experimental works</p>
               </div>
