@@ -116,7 +116,7 @@ const GlobalFilmFestival = () => {
           <div className="max-w-4xl mx-auto">
             <div className="bg-gray-100 p-8 md:p-12 rounded-xl">
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">Submit Your Film</h2>
-              <p className="text-lg text-center mb-8">
+              <p className="text-center text-lg mb-8">
                 We welcome submissions from filmmakers around the world. Share your vision with our global audience.
               </p>
               
@@ -168,39 +168,8 @@ const GlobalFilmFestival = () => {
         </div>
       </section>
       
-      {/* Past Festivals Gallery */}
-      <section className="py-16 md:py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Past Festival Highlights</h2>
-          <p className="text-lg text-center text-gray-700 max-w-3xl mx-auto mb-12">
-            Relive moments from our previous festivals that brought together filmmakers and audiences from around the world.
-          </p>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div key={item} className="overflow-hidden rounded-lg shadow-sm h-64 relative group">
-                <img 
-                  src={`https://source.unsplash.com/random/600x400?film,festival&sig=${item}`} 
-                  alt={`Festival highlight ${item}`} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="text-white font-medium">View Gallery</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-12 text-center">
-            <CTAButton href="#" variant="outline">
-              View Full Gallery
-            </CTAButton>
-          </div>
-        </div>
-      </section>
-      
       {/* Partners & Sponsors */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Our Partners & Sponsors</h2>
           
@@ -226,9 +195,9 @@ const GlobalFilmFestival = () => {
       </section>
       
       {/* Contact Section */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-xl shadow-sm">
+          <div className="max-w-4xl mx-auto bg-gray-100 p-8 md:p-12 rounded-xl shadow-sm">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Contact Us</h2>
             <p className="text-center text-gray-700 mb-8">
               Have questions about the festival? Our team is here to help you.
